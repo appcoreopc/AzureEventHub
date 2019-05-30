@@ -7,10 +7,8 @@ namespace EventWriter
 {
     class Program
     {
-
-        private static EventHubClient eventHubClient;
-        private const string EventHubConnectionString = "{Event Hubs connection string}";
-        private const string EventHubName = "{Event Hub path/name}";
+        private const string EventHubConnectionString = "Endpoint=sb://testehnstempdata.servicebus.windows.net/;SharedAccessKeyName=testapppolicy;SharedAccessKey=edt0qBfK7Tu3nPqNEDl2OHqhaTI0dgeH16GL5cJg6kI=;EntityPath=ehtesttargetapp";
+        private const string EventHubName = "ehtesttargetapp";
 
 
         static void Main(string[] args)
