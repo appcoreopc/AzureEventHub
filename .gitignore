@@ -1,3 +1,6 @@
 
 src/EventWriter/bin/*
 src/EventWriter/obj/*
+
+src/EventReader/obj/*
+src/EventReader/bin/*
