@@ -17,22 +17,26 @@ namespace EventReader
    
         private const string StorageConnectionString = "DefaultEndpointsProtocol=https;AccountName=sateststore;AccountKey=E9Z0BUTEbahjyKRoBnCU/3XI3cxv2MynY3U+UuFMuwFVH5hE0w2tGN3N5rS/C5rjx9Ekmvz/AQtUVH4h3dpt2w==;EndpointSuffix=core.windows.net";
 
-
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!", args[0]);
-
-            ReadEventData(args[0]).GetAwaiter().GetResult();
+            ReadEventData(args[0], args[1]).GetAwaiter().GetResult();
         }
 
-        private static async Task ReadEventData(string containerName)         
+        private static async Task ReadEventData(string containerName, string consumerGroup)         
         {
-
             Console.WriteLine($"Registering EventProcessor...to {containerName}");
+
+            string consumergroup = string.Empty;
+
+            if (consumerGroup == "default")
+            {
+                 consumerGroup = PartitionReceiver.DefaultConsumerGroupName;
+            }          
 
             var eventProcessorHost = new EventProcessorHost(
                 EventHubName,
-                PartitionReceiver.DefaultConsumerGroupName,
+                consumerGroup,
                 EventHubConnectionString,
                 StorageConnectionString,
                 containerName);
